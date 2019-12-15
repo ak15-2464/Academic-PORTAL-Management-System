@@ -20,6 +20,11 @@ typedef struct subject node;
 
 void display_course();
 
+void examMenu();
+void assaignmentMenu();
+void courseMenu();
+void exit();
+void mainMenu();
 
 void input_courses()
 {
@@ -68,24 +73,28 @@ void input_courses()
 			{
 				cout<<"\n\n\n";
 			
-					cout<<"\Do you wantto see all subject ?(Y/N) : ";
+					cout<<"\tDo you want to see all subject ?(Y/N) : ";
 			
 						cin>>choice;
 			
 							if(choice=='y' || choice=='Y')
 						{
 							display_course();
+							courseMenu();
 						}
 			
 					else if(choice=='n' || choice=='N')
 				{
-				
+					mainMenu();
 				}
 		}
 		
 			else
 			
-				cout<<"Invalid or Wrong keyword"<<endl;	
+					{
+						cout<<"\nInvalid or Wrong keyword\n"<<endl;
+						input_courses();
+					}	
 
 	
 }
@@ -108,7 +117,6 @@ void display_course()
 }
 
 void LogIn();
-void mainMenu();
 void view_frame()
 {
 	
@@ -122,14 +130,6 @@ int main()
 	
 	view_frame();
 	LogIn();
-	
-	int choice;
-	
-	cin>>choice;
-	
-	
-	
-	
 }
 
 void LogIn()
@@ -165,16 +165,71 @@ void LogIn()
 	}
 }
 
+
 void mainMenu()
+{
+	cout<<"\t\t1.Course Menu\n";
+	cout<<"\t\t2.Assaignment Menu\n";
+	cout<<"\t\t3.Exam Menu\n";
+	cout<<"\t\t4.Exit\n";
+	
+	int option;
+		cin>>option;
+			if(option==1) courseMenu();
+}
+
+void exit()
+{
+	return;
+}
+
+void deleteCourse();
+
+void courseMenu()
 {
 	cout<<"\t\t1.Add Your Courses\n";
 	cout<<"\t\t2.View Your Added Courses\n";
-	cout<<"\t\t3.Delate Your Unwanted course\n";
-	cout<<"\t\t4.Add Your Assaignment Tasks\n";
-	cout<<"\t\t5.View Your Assaignment\n";
-	cout<<"\t\t6.Assaignment Menu\n";
-	cout<<"\t\t7.Exam Menu\n";
-	cout<<"\t\t8.Exit\n";
+	cout<<"\t\t3.Delete Your Unwanted courses\n";
+	cout<<"\t\t4.Go To Main Menu\n";
+	
+	int option;
+		cin>>option;
+			if(option==1) input_courses();
+				else if(option==2) display_course();
+					else if(option==3) deleteCourse();
+						else if(option==4) mainMenu();
+							else 
+	cout<<"\t\tInvalid Keyword\n\n";
+						
 }
 
+void deleteCourse()
+{
+	char code[30];
+	
+	cout<<"\nEnter Course Code : ";
+	cin>>code;
+	
+    node *myNode = first, *previous=NULL;
+    int flag = 0;
 
+    while(myNode!=NULL)
+    {
+        if(myNode->Code==code)
+        {
+            if(previous==NULL)
+                first = myNode->next;
+            else
+                previous->next = myNode->next;
+
+            cout<<"delated";
+
+            flag = 1;
+            free(myNode);
+            break;
+        }
+
+        previous = myNode;
+        myNode = myNode->next;
+	}
+}
