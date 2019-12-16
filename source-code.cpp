@@ -233,3 +233,34 @@ void deleteCourse()
         myNode = myNode->next;
 	}
 }
+
+
+void addAssaignment();
+void viewAssaignment();
+void deleteAssaignment();
+void lastAssaignment();
+
+void assaignmentMenu()
+{
+	cout<<"\t\t1.Add Your Assaignments\n";
+	cout<<"\t\t2.View Your Assaignments\n";
+	cout<<"\t\t3.Delete Your Unwanted Assaignments\n";
+	cout<<"\t\t4.View Last Given Assaignment\n";
+	cout<<"\t\t5.Go To Main Menu\n";
+	
+		int option;
+		cin>>option;
+			if(option==1) addAssaignment();
+				else if(option==2) viewAssaignment();
+					else if(option==3) deleteAssaignment();
+						else if(option==4) lastAssaignment();
+							else if(option==5) mainMenu();
+								else 
+		cout<<"\t\tInvalid Keyword\n\n";
+}
+
+void examMenu()
+{
+	
+}
+
